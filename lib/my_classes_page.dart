@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
 import 'notification_page.dart';
+import 'materi_page.dart';
 
 class MyClassesPage extends StatefulWidget {
   const MyClassesPage({super.key});
@@ -118,99 +119,111 @@ class _MyClassesPageState extends State<MyClassesPage> {
 
             final classItem = classData[index];
 
-            return Container(
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(12),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.1),
-                    spreadRadius: 1,
-                    blurRadius: 5,
-                    offset: const Offset(0, 2),
+            return GestureDetector(
+              onTap: () {
+                // Navigasi ke halaman materi dengan meneruskan nama mata kuliah
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        MateriPage(mataKuliah: classItem['name']!),
                   ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  // Thumbnail: Gambar persegi di sisi kiri
-                  Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE6F0FF),
-                      borderRadius: BorderRadius.circular(8),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.1),
+                      spreadRadius: 1,
+                      blurRadius: 5,
+                      offset: const Offset(0, 2),
                     ),
-                    child: Icon(Icons.book, color: Colors.blue, size: 30),
-                  ),
-                  const SizedBox(width: 12),
-                  // Informasi Teks
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Tahun akademik
-                        Text(
-                          classItem['year']!,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    // Thumbnail: Gambar persegi di sisi kiri
+                    Container(
+                      width: 60,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: const Color(0xFFE6F0FF),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Icon(Icons.book, color: Colors.blue, size: 30),
+                    ),
+                    const SizedBox(width: 12),
+                    // Informasi Teks
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Tahun akademik
+                          Text(
+                            classItem['year']!,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
                           ),
-                        ),
-                        // Nama Mata Kuliah (Bold, Kapital)
-                        Text(
-                          classItem['name']!,
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
+                          // Nama Mata Kuliah (Bold, Kapital)
+                          Text(
+                            classItem['name']!,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black87,
+                            ),
                           ),
-                        ),
-                        // Kode Kelas/Dosen
-                        Text(
-                          classItem['code']!,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.grey[600],
+                          // Kode Kelas/Dosen
+                          Text(
+                            classItem['code']!,
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: Colors.grey[600],
+                            ),
                           ),
-                        ),
-                        const SizedBox(height: 8),
-                        // Progress Bar
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(5),
-                                child: LinearProgressIndicator(
-                                  value:
-                                      double.parse(classItem['progress']!) /
-                                      100,
-                                  minHeight: 6,
-                                  backgroundColor:
-                                      Colors.grey[300], // Abu-abu muda
-                                  valueColor:
-                                      const AlwaysStoppedAnimation<Color>(
-                                        Color(0xFF800000), // Merah marun
-                                      ),
+                          const SizedBox(height: 8),
+                          // Progress Bar
+                          Row(
+                            children: [
+                              Expanded(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(5),
+                                  child: LinearProgressIndicator(
+                                    value:
+                                        double.parse(classItem['progress']!) /
+                                        100,
+                                    minHeight: 6,
+                                    backgroundColor:
+                                        Colors.grey[300], // Abu-abu muda
+                                    valueColor:
+                                        const AlwaysStoppedAnimation<Color>(
+                                          Color(0xFF800000), // Merah marun
+                                        ),
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 8),
-                            // Teks persentase
-                            Text(
-                              '\${classItem["progress"]}% Selesai',
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: Colors.grey[600],
+                              const SizedBox(width: 8),
+                              // Teks persentase
+                              Text(
+                                '\${classItem["progress"]}% Selesai',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             );
           },

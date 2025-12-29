@@ -63,6 +63,34 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  String _getClassCategory(int index) {
+    final List<String> categories = [
+      'MATA KULIAH',
+      'MATA KULIAH',
+      'MATA KULIAH',
+    ];
+    return categories[index];
+  }
+
+  String _getClassName(int index) {
+    final List<String> names = [
+      'DESAIN Antarmuka & Pengalaman Pengguna'.toUpperCase(),
+      'Pemrograman Berorientasi Objek'.toUpperCase(),
+      'Basis Data'.toUpperCase(),
+    ];
+    return names[index];
+  }
+
+  String _getClassCode(int index) {
+    final List<String> codes = ['[A01]', '[A02]', '[A03]'];
+    return codes[index];
+  }
+
+  double _getClassProgress(int index) {
+    final List<double> progresses = [14.0, 65.0, 80.0];
+    return progresses[index];
+  }
+
   @override
   void initState() {
     super.initState();
@@ -118,39 +146,6 @@ class _HomePageState extends State<HomePage> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                                 color: Colors.white,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(width: 10),
-                      // Badge profil di kanan
-                      Container(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 12,
-                          vertical: 6,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(
-                            20,
-                          ), // Bentuk kapsul
-                        ),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              width: 20,
-                              height: 20,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Colors.white,
-                                border: Border.all(color: Colors.grey),
-                              ),
-                              child: Icon(
-                                Icons.person,
-                                size: 14,
-                                color: Colors.grey,
                               ),
                             ),
                           ],
@@ -219,7 +214,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                             Text(
-                              '15 Juni 2023, 23:59', // Contoh tanggal dan jam
+                              '31 Desember 2025, 23:59', // Contoh tanggal dan jam
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.bold,
@@ -312,143 +307,106 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 const SizedBox(height: 15),
-                // List View untuk Progres Kelas
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics:
-                      NeverScrollableScrollPhysics(), // Prevent conflicts with parent scroll
-                  itemCount: 3, // Jumlah kelas
-                  separatorBuilder: (context, index) =>
-                      const SizedBox(height: 15),
-                  itemBuilder: (context, index) {
-                    // Data dummy untuk contoh
-                    final List<Map<String, String>> classData = [
-                      {
-                        'year': '2021/2',
-                        'name': 'DESAIN ANTARMUKA & PENGALAMAN PENGGUNA',
-                        'code': 'D4SM-42-03 [ADY]',
-                        'progress': '75',
-                      },
-                      {
-                        'year': '2021/2',
-                        'name': 'PEMROGRAMAN BERORIENTASI OBJEK',
-                        'code': 'D4SM-41-02 [BUDI]',
-                        'progress': '60',
-                      },
-                      {
-                        'year': '2021/2',
-                        'name': 'BASIS DATA',
-                        'code': 'D4SM-40-01 [SARI]',
-                        'progress': '90',
-                      },
-                    ];
-
-                    final classItem = classData[index];
-
-                    return Container(
-                      padding: EdgeInsets.all(12),
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(12),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.withOpacity(0.1),
-                            spreadRadius: 1,
-                            blurRadius: 5,
-                            offset: const Offset(0, 2),
-                          ),
-                        ],
-                      ),
-                      child: Row(
-                        children: [
-                          // Thumbnail: Gambar persegi di sisi kiri
-                          Container(
-                            width: 60,
-                            height: 60,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFE6F0FF),
-                              borderRadius: BorderRadius.circular(8),
+                // List untuk Progres Kelas
+                Column(
+                  children: [
+                    ...List.generate(3, (i) {
+                      return Container(
+                        padding: EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.1),
+                              spreadRadius: 1,
+                              blurRadius: 5,
+                              offset: const Offset(0, 2),
                             ),
-                            child: Icon(
-                              Icons.book,
-                              color: Colors.blue,
-                              size: 30,
+                          ],
+                        ),
+                        child: Row(
+                          children: [
+                            // Thumbnail: Gambar persegi di sisi kiri
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: Color(0xFFE6F0FF),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Icon(
+                                Icons.book,
+                                color: Colors.blue,
+                                size: 30,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 12),
-                          // Informasi Teks
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Tahun akademik
-                                Text(
-                                  classItem['year']!,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
+                            const SizedBox(width: 12),
+                            // Informasi Teks
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Label Kategori
+                                  Text(
+                                    _getClassCategory(i),
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      color: Colors.grey[600],
+                                    ),
                                   ),
-                                ),
-                                // Nama Mata Kuliah (Bold, Kapital)
-                                Text(
-                                  classItem['name']!,
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87,
+                                  // Nama Mata Kuliah (Bold, Kapital)
+                                  Text(
+                                    "\${_getClassName(i)} \${_getClassCode(i)}",
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87,
+                                    ),
                                   ),
-                                ),
-                                // Kode Kelas/Dosen
-                                Text(
-                                  classItem['code']!,
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.grey[600],
-                                  ),
-                                ),
-                                const SizedBox(height: 8),
-                                // Progress Bar
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(5),
-                                        child: LinearProgressIndicator(
-                                          value:
-                                              double.parse(
-                                                classItem['progress']!,
-                                              ) /
-                                              100,
-                                          minHeight: 6,
-                                          backgroundColor:
-                                              Colors.grey[300], // Abu-abu muda
-                                          valueColor:
-                                              AlwaysStoppedAnimation<Color>(
-                                                const Color(
-                                                  0xFF800000,
-                                                ), // Merah marun
-                                              ),
+                                  const SizedBox(height: 8),
+                                  // Progress Bar
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            5,
+                                          ),
+                                          child: LinearProgressIndicator(
+                                            value: _getClassProgress(i) / 100,
+                                            minHeight: 6,
+                                            backgroundColor: Colors
+                                                .grey[300], // Abu-abu muda
+                                            valueColor:
+                                                AlwaysStoppedAnimation<Color>(
+                                                  const Color(
+                                                    0xFF800000,
+                                                  ), // Merah marun
+                                                ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                    const SizedBox(width: 8),
-                                    // Teks persentase
-                                    Text(
-                                      '\${classItem["progress"]}% Selesai',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey[600],
+                                      const SizedBox(width: 8),
+                                      // Teks persentase
+                                      Text(
+                                        '\${_getClassProgress(i).toInt()}% Selesai',
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.grey[600],
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                          ],
+                        ),
+                      );
+                    }),
+                    const SizedBox(height: 15),
+                  ],
                 ),
               ],
             ),
@@ -463,7 +421,7 @@ class _HomePageState extends State<HomePage> {
               Icons.home,
               color: _selectedIndex == 0 ? Colors.white : Colors.grey[400],
             ),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
             icon: Icon(

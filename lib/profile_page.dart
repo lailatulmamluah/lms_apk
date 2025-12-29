@@ -100,6 +100,24 @@ class _ProfilePageState extends State<ProfilePage>
     return '\$hour:\$minute';
   }
 
+  String _getDayName(int dayOfWeek) {
+    // Mengatur agar hari tetap dalam rentang 1-7
+    int day = dayOfWeek % 7;
+    if (day == 0) day = 7;
+
+    const days = [
+      '', // Placeholder untuk indeks 0
+      'Senin',
+      'Selasa',
+      'Rabu',
+      'Kamis',
+      'Jumat',
+      'Sabtu',
+      'Minggu',
+    ];
+    return days[day];
+  }
+
   @override
   void dispose() {
     _tabController.dispose();
@@ -226,9 +244,9 @@ class _ProfilePageState extends State<ProfilePage>
                 ),
               ),
               tabs: const [
-                Tab(text: 'About Me'),
+                Tab(text: 'Tentang saya'),
                 Tab(text: 'Kelas'),
-                Tab(text: 'Edit Profile'),
+                Tab(text: 'Edit Profil'),
               ],
             ),
           ),
@@ -330,7 +348,7 @@ class _ProfilePageState extends State<ProfilePage>
                           const SizedBox(height: 8),
                           TextField(
                             decoration: InputDecoration(
-                              hintText: 'DANDY',
+                              hintText: 'lailatul',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -365,7 +383,7 @@ class _ProfilePageState extends State<ProfilePage>
                           const SizedBox(height: 8),
                           TextField(
                             decoration: InputDecoration(
-                              hintText: 'CANDRA PRATAMA',
+                              hintText: 'mamluah',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -401,7 +419,7 @@ class _ProfilePageState extends State<ProfilePage>
                           TextField(
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
-                              hintText: 'dandycandra@example.com',
+                              hintText: 'lailatulmamluah01@gmail.com',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -536,7 +554,7 @@ class _ProfilePageState extends State<ProfilePage>
               Icons.home,
               color: _selectedIndex == 0 ? Colors.white : Colors.grey[400],
             ),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
             icon: Icon(
@@ -595,21 +613,29 @@ class _ProfilePageState extends State<ProfilePage>
 
   Widget _buildKelasTab() {
     // Data dummy untuk contoh kelas
+    DateTime now = DateTime.now();
+    String formattedDate =
+        '${_getDayName(now.weekday)}, ${now.day} ${_getMonthName(now.month)} ${now.year}';
+    String formattedDate2 =
+        '${_getDayName(now.weekday + 1)}, ${now.day + 1} ${_getMonthName(now.month)} ${now.year}';
+    String formattedDate3 =
+        '${_getDayName(now.weekday + 2)}, ${now.day + 2} ${_getMonthName(now.month)} ${now.year}';
+
     final List<Map<String, String>> kelasData = [
       {
         'judul': 'BAHASA INGGRIS: BUSINESS AND SCIENTIFIC',
         'kode': 'D4SM-41-GAB1 [ARS]',
-        'tanggal': 'Monday, 11 February 2021',
+        'tanggal': formattedDate,
       },
       {
         'judul': 'MATEMATIKA DISKRIT',
         'kode': 'D4SM-41-GAB2 [BUD]',
-        'tanggal': 'Tuesday, 12 February 2021',
+        'tanggal': formattedDate2,
       },
       {
         'judul': 'SISTEM OPERASI',
         'kode': 'D4SM-41-GAB3 [CAH]',
-        'tanggal': 'Wednesday, 13 February 2021',
+        'tanggal': formattedDate3,
       },
     ];
 
