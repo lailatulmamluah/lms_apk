@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             width: double.infinity,
             decoration: BoxDecoration(
-              color: const Color(0xFF800000), // Merah marun solid
+              color: const Color(0xFF2196F3), // Biru solid
               borderRadius: const BorderRadius.vertical(
                 bottom: Radius.circular(30), // Rounded bottom corners
               ),
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF800000), // Merah marun
+                    color: const Color(0xFF2196F3), // Biru
                     borderRadius: BorderRadius.circular(
                       15,
                     ), // corner radius besar
@@ -448,7 +448,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF800000), // Maroon background
+        backgroundColor: const Color(0xFF2196F3), // Biru background
         elevation: 10,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[400],

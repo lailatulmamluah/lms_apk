@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
+      backgroundColor: const Color(0xFF2196F3), // Biru
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,7 +52,7 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Icon(
                 Icons.school,
                 size: 80,
-                color: Theme.of(context).primaryColor,
+                color: const Color(0xFF2196F3), // Biru
               ),
             ),
             const SizedBox(height: 20),

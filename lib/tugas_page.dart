@@ -58,7 +58,7 @@ class _TugasPageState extends State<TugasPage> with TickerProviderStateMixin {
             width: double.infinity,
             height: 150,
             decoration: const BoxDecoration(
-              color: Color(0xFF800000), // Merah tua
+              color: Color(0xFF2196F3), // Biru
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -127,7 +127,7 @@ class _TugasPageState extends State<TugasPage> with TickerProviderStateMixin {
                 Container(
                   padding: const EdgeInsets.all(8.0),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF800000), // Merah tua
+                    color: const Color(0xFF2196F3), // Biru
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: const Icon(
@@ -361,7 +361,7 @@ class _TugasPageState extends State<TugasPage> with TickerProviderStateMixin {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF800000), // Merah tua background
+        backgroundColor: const Color(0xFF2196F3), // Biru background
         elevation: 10,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[400],

@@ -266,7 +266,7 @@ class _MyClassesPageState extends State<MyClassesPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF800000), // Maroon background
+        backgroundColor: const Color(0xFF2196F3), // Biru background
         elevation: 10,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[400],

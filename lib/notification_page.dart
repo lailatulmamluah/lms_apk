@@ -61,7 +61,7 @@ class _NotificationPageState extends State<NotificationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFF800000), // Merah marun
+        backgroundColor: const Color(0xFF2196F3), // Biru
         title: const Text(
           'Notifikasi',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
@@ -79,7 +79,7 @@ class _NotificationPageState extends State<NotificationPage> {
               width: double.infinity,
               padding: const EdgeInsets.all(16.0),
               decoration: BoxDecoration(
-                color: const Color(0xFF800000), // Merah marun
+                color: const Color(0xFF2196F3), // Biru
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Column(
@@ -188,7 +188,7 @@ class _NotificationPageState extends State<NotificationPage> {
                           ),
                           child: Icon(
                             iconData,
-                            color: const Color(0xFF800000), // Merah marun
+                            color: const Color(0xFF2196F3), // Biru
                           ),
                         ),
                         const SizedBox(width: 12),
@@ -264,7 +264,7 @@ class _NotificationPageState extends State<NotificationPage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFF800000), // Merah marun background
+        backgroundColor: const Color(0xFF2196F3), // Biru background
         elevation: 10,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[400],

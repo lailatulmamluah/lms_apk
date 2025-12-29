@@ -182,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage>
             height: MediaQuery.of(context).size.height / 3,
             width: double.infinity,
             decoration: const BoxDecoration(
-              color: Color(0xFFA92C2C), // Merah marun
+              color: Color(0xFF2196F3), // Biru
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -326,7 +326,7 @@ class _ProfilePageState extends State<ProfilePage>
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: const Color(
-                                0xFFA92C2C,
+                                0xFF2196F3,
                               ), // Merah marun
                               foregroundColor: Colors.white,
                               padding: const EdgeInsets.symmetric(
@@ -611,7 +611,7 @@ class _ProfilePageState extends State<ProfilePage>
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFFA92C2C), // Merah marun background
+        backgroundColor: const Color(0xFF2196F3), // Biru background
         elevation: 10,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey[400],
@@ -761,7 +761,7 @@ class _ProfilePageState extends State<ProfilePage>
                 Navigator.of(context).pop(); // Tutup dialog
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFA92C2C),
+                backgroundColor: const Color(0xFF2196F3),
                 foregroundColor: Colors.white,
               ),
               child: const Text('Log Out'),
