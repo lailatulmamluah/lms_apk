@@ -15,11 +15,19 @@ class _ProfilePageState extends State<ProfilePage>
     with TickerProviderStateMixin {
   int _selectedIndex = 3; // Profil is selected (using index 3 as profile page)
   String _userName = 'Pengguna';
-  String _userEmail = 'email@example.com';
-  String _programStudi = 'D4 Teknologi Rekayasa Multimedia';
-  String _fakultas = 'FIT';
+  String _userEmail =
+      'user@example.com'; // Default value, will be replaced by SharedPreferences data
+  String _programStudi = 'S1 Teknik Informatika';
+  String _fakultas = 'UIM';
   String _firstAccess = 'Belum ada akses';
   String _lastAccess = 'Belum ada akses';
+
+  // Controllers for edit profile form
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _countryController = TextEditingController();
+  final TextEditingController _descriptionController = TextEditingController();
 
   late TabController _tabController;
 
@@ -28,6 +36,15 @@ class _ProfilePageState extends State<ProfilePage>
     super.initState();
     _loadUserData();
     _tabController = TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    // Inisialisasi controller dengan nilai terbaru setelah data dimuat
+    _emailController.text = _userEmail;
+    // Untuk sementara, kita gunakan nama pengguna sebagai nama depan
+    _firstNameController.text = _userName;
   }
 
   Future<void> _loadUserData() async {
@@ -121,6 +138,11 @@ class _ProfilePageState extends State<ProfilePage>
   @override
   void dispose() {
     _tabController.dispose();
+    _emailController.dispose();
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _countryController.dispose();
+    _descriptionController.dispose();
     super.dispose();
   }
 
@@ -179,7 +201,12 @@ class _ProfilePageState extends State<ProfilePage>
                       size: 28,
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomePage(),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -347,8 +374,9 @@ class _ProfilePageState extends State<ProfilePage>
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            controller: _firstNameController,
                             decoration: InputDecoration(
-                              hintText: 'lailatul',
+                              hintText: 'Nama Depan',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -382,8 +410,9 @@ class _ProfilePageState extends State<ProfilePage>
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            controller: _lastNameController,
                             decoration: InputDecoration(
-                              hintText: 'mamluah',
+                              hintText: 'Nama Belakang',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -417,9 +446,10 @@ class _ProfilePageState extends State<ProfilePage>
                           ),
                           const SizedBox(height: 8),
                           TextField(
+                            controller: _emailController,
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
-                              hintText: 'lailatulmamluah01@gmail.com',
+                              hintText: 'user@example.com',
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -628,7 +658,7 @@ class _ProfilePageState extends State<ProfilePage>
         'tanggal': formattedDate,
       },
       {
-        'judul': 'MATEMATIKA DISKRIT',
+        'judul': 'MATEMATIKA',
         'kode': 'D4SM-41-GAB2 [BUD]',
         'tanggal': formattedDate2,
       },
@@ -749,9 +779,18 @@ class _ProfilePageState extends State<ProfilePage>
     Navigator.pushReplacementNamed(context, '/login');
   }
 
-  void _saveProfileChanges() {
-    // Di sini Anda bisa menambahkan logika untuk menyimpan perubahan profil
-    // Contoh: menyimpan data ke shared preferences
+  void _saveProfileChanges() async {
+    // Menyimpan data profil ke SharedPreferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Simpan email yang diubah ke SharedPreferences
+    await prefs.setString('user_email', _emailController.text);
+
+    // Juga perbarui variabel lokal
+    setState(() {
+      _userEmail = _emailController.text;
+    });
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Profil berhasil diperbarui'),

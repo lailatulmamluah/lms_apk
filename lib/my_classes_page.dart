@@ -70,7 +70,10 @@ class _MyClassesPageState extends State<MyClassesPage> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.black),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => const HomePage()),
+              );
             },
           ),
           title: const Text(
@@ -236,7 +239,7 @@ class _MyClassesPageState extends State<MyClassesPage> {
               Icons.home,
               color: _selectedIndex == 0 ? Colors.white : Colors.grey[400],
             ),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
             icon: Icon(

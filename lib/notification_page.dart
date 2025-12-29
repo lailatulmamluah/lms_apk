@@ -237,7 +237,7 @@ class _NotificationPageState extends State<NotificationPage> {
               Icons.home,
               color: _selectedIndex == 0 ? Colors.white : Colors.grey[400],
             ),
-            label: 'Home',
+            label: 'Beranda',
           ),
           BottomNavigationBarItem(
             icon: Icon(

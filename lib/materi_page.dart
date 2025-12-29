@@ -3,6 +3,7 @@ import 'home_page.dart';
 import 'my_classes_page.dart';
 import 'notification_page.dart';
 import 'tugas_page.dart';
+import 'profile_page.dart';
 
 class MateriPage extends StatefulWidget {
   final String mataKuliah; // Nama mata kuliah yang akan ditampilkan
@@ -47,6 +48,11 @@ class _MateriPageState extends State<MateriPage> with TickerProviderStateMixin {
         context,
         MaterialPageRoute(builder: (context) => const NotificationPage()),
       );
+    } else if (index == 3) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const ProfilePage()),
+      );
     }
   }
 
@@ -79,7 +85,12 @@ class _MateriPageState extends State<MateriPage> with TickerProviderStateMixin {
                       size: 28,
                     ),
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MyClassesPage(),
+                        ),
+                      );
                     },
                   ),
                 ),
@@ -495,6 +506,13 @@ class _MateriPageState extends State<MateriPage> with TickerProviderStateMixin {
               color: _selectedIndex == 2 ? Colors.white : Colors.grey[400],
             ),
             label: 'Notifikasi',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: _selectedIndex == 3 ? Colors.white : Colors.grey[400],
+            ),
+            label: 'Profil',
           ),
         ],
         currentIndex: _selectedIndex,
