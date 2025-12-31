@@ -16,7 +16,7 @@ class _ProfilePageState extends State<ProfilePage>
   int _selectedIndex = 3; // Profil is selected (using index 3 as profile page)
   String _userName = 'Pengguna';
   String _userEmail =
-      'user@example.com'; // Default value, will be replaced by SharedPreferences data
+      'lailatulmamluah01@gmail.com'; // Default value, will be replaced by SharedPreferences data
   String _programStudi = 'S1 Teknik Informatika';
   String _fakultas = 'UIM';
   String _firstAccess = 'Belum ada akses';
