@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'home_page.dart';
+import 'login_page.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -435,17 +436,15 @@ class _RegisterPageState extends State<RegisterPage> {
     // Tampilkan pesan sukses
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text(
-          'Registrasi berhasil! Data dikirim ke lailatulmamluah01@gmail.com',
-        ),
+        content: Text('Registrasi berhasil! Silakan login untuk melanjutkan.'),
       ),
     );
 
-    // Arahkan langsung ke halaman home setelah registrasi berhasil
+    // Kembali ke halaman login setelah registrasi berhasil
     Future.delayed(const Duration(seconds: 2), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context) => const HomePage()),
+        MaterialPageRoute(builder: (context) => const LoginPage()),
       );
     });
   }
